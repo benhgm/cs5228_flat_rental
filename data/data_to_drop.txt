@@ -1,0 +1,1 @@
+furnished,elevation,block,town,subzone,street_name

@@ -136,6 +136,133 @@ def std_remaining_lease(lease_commence_year:int, current_year:int) -> int:
     """
     return int(99 - (current_year - lease_commence_year))
 
+
+def preprocess_rent_approval_date(df):
+    """
+    Split date into year and month
+    Drop the original rent_approval_date column
+    """
+    df['rent_approval_year'] = df['rent_approval_date'].apply(lambda x: x[:4]).astype(int)
+    df['rent_approval_month'] = df['rent_approval_date'].apply(lambda x: x[5:]).astype(int)
+
+    df = df.drop("rent_approval_date", axis=1)
+    return df
+
+
+def preprocess_town(df):
+    """
+    Convert town to lowercase
+    Do one-hot encoding for town
+    """
+    df['town'] = df['town'].str.lower()
+
+    one_hot = pd.get_dummies(df['town'])
+    df = df.drop(columns=['town'])
+    df = df.join(one_hot)
+    return df
+
+
+def preprocess_street_name(df):
+    """
+    Convert street name to lowercase
+    Remove the number in street_name
+    Append the prefix "street_name" to avoid name collision with values of other columns
+    Do one-hot encoding for street_name
+    """
+    df['street_name'] = df['street_name'].str.lower()
+
+    street_name_list = list(df['street_name'])
+    for i in range(len(street_name_list)):
+        tokenized_street_name = street_name_list[i].split()
+        try:
+            final_word_to_int = int(tokenized_street_name[-1])
+        except:
+            continue
+        street_name_list[i] = ' '.join(tokenized_street_name[:-1]).strip()
+    cleaned_train_df['street_name'] = street_name_list
+
+
+    street_name_list = list(df['street_name'])
+    for i in range(len(street_name_list)):
+        street_name_list[i] = "street_name " + street_name_list[i]
+    df['street_name'] = street_name_list
+
+
+    one_hot = pd.get_dummies(df['street_name'])
+    df = df.drop(columns=['street_name'])
+    df = df.join(one_hot)
+
+    return df
+
+
+def preprocess_flat_type(df):
+    """
+    Replace "-" with " " to make the flat_type values consistent
+    Do the ordinal encoding for flat_type
+    """
+    df["flat_type"] = df["flat_type"].str.replace("-", ' ')
+
+    df['flat_type'] = pd.factorize(df['flat_type'])[0] + 1
+    return df
+
+
+def preprocess_flat_model(df):
+    """
+    Do the one-hot encoding for flat_model
+    """
+    one_hot = pd.get_dummies(df['flat_model'])
+    df = df.drop(columns=['flat_model'])
+    df = df.join(one_hot)
+
+    return df
+
+
+def preprocess_planning_area(df):
+    """
+    Append the prefix "planning_area" to avoid name collision with values of other columns
+    Do the one-hot encoding for planning_area
+    """
+
+    planning_area_list = list(df['planning_area'])
+    for i in range(len(planning_area_list)):
+        planning_area_list[i] = "planning_area " + planning_area_list[i]
+    df['planning_area'] = planning_area_list
+
+    one_hot = pd.get_dummies(df['planning_area'])
+    df = df.drop(columns=['planning_area'])
+    df = df.join(one_hot)
+    return df
+
+
+
+def preprocess_subzone(df):
+    """
+    Append the prefix "subzone" to avoid name collision with values of other columns
+    Do the one-hot encoding for subzone
+    """
+
+    subzone_list = list(df['subzone'])
+    for i in range(len(subzone_list)):
+        subzone_list[i] = "subzone " + subzone_list[i]
+    df['subzone'] = subzone_list
+
+    one_hot = pd.get_dummies(df['subzone'])
+    df = df.drop(columns=['subzone'])
+    df = df.join(one_hot)
+    return df
+
+
+def preprocess_region(df):
+    """
+    Append the prefix "region" to avoid name collision with values of other columns
+    Do the one-hot encoding for region
+    """
+    one_hot = pd.get_dummies(df['region'])
+    df = df.drop(columns=['region'])
+    df = df.join(one_hot)
+    return df
+
+
 if __name__ == "__main__":
     args = parser.parse_args()
     dataset = pd.read_csv(args.input_file)

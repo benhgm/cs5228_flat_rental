@@ -45,7 +45,7 @@ def count_amenity(target_df:pd.DataFrame, ref_df:pd.DataFrame, threshold:float) 
     flat_amenity_count_ref = dict(zip(unique, counts))
 
     # for instances whereby amenity is 0, pad dict with zero
-    for idx in range(flat_amenity_count_ref.shape[0]):
+    for idx in range(len(flat_amenity_count_ref)):
         if idx not in flat_amenity_count_ref.keys(): 
             flat_amenity_count_ref[idx] = 0
 

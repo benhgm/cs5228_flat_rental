@@ -156,7 +156,7 @@ def preprocess_town(df):
     """
     df['town'] = df['town'].str.lower()
 
-    one_hot = pd.get_dummies(df['town'])
+    one_hot = pd.get_dummies(df['town'], dtype="int64")
     df = df.drop(columns=['town'])
     df = df.join(one_hot)
     return df
@@ -188,7 +188,7 @@ def preprocess_street_name(df):
     df['street_name'] = street_name_list
 
 
-    one_hot = pd.get_dummies(df['street_name'])
+    one_hot = pd.get_dummies(df['street_name'], dtype="int64")
     df = df.drop(columns=['street_name'])
     df = df.join(one_hot)
 
@@ -210,7 +210,7 @@ def preprocess_flat_model(df):
     """
     Do the one-hot encoding for flat_model
     """
-    one_hot = pd.get_dummies(df['flat_model'])
+    one_hot = pd.get_dummies(df['flat_model'], dtype="int64")
     df = df.drop(columns=['flat_model'])
     df = df.join(one_hot)
 
@@ -228,7 +228,7 @@ def preprocess_planning_area(df):
         planning_area_list[i] = "planning_area " + planning_area_list[i]
     df['planning_area'] = planning_area_list
 
-    one_hot = pd.get_dummies(df['planning_area'])
+    one_hot = pd.get_dummies(df['planning_area'], dtype="int64")
     df = df.drop(columns=['planning_area'])
     df = df.join(one_hot)
     return df
@@ -246,7 +246,7 @@ def preprocess_subzone(df):
         subzone_list[i] = "subzone " + subzone_list[i]
     df['subzone'] = subzone_list
 
-    one_hot = pd.get_dummies(df['subzone'])
+    one_hot = pd.get_dummies(df['subzone'], dtype="int64")
     df = df.drop(columns=['subzone'])
     df = df.join(one_hot)
     return df
@@ -257,7 +257,7 @@ def preprocess_region(df):
     Append the prefix "region" to avoid name collision with values of other columns
     Do the one-hot encoding for region
     """
-    one_hot = pd.get_dummies(df['region'])
+    one_hot = pd.get_dummies(df['region'], dtype="int64")
     df = df.drop(columns=['region'])
     df = df.join(one_hot)
     return df

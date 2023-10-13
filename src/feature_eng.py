@@ -45,7 +45,7 @@ def count_amenity(target_df:pd.DataFrame, ref_df:pd.DataFrame, threshold:float) 
     flat_amenity_count_ref = dict(zip(unique, counts))
 
     # for instances whereby amenity is 0, pad dict with zero
-    for idx in range(flat_amenity_count_ref.shape[0]):
+    for idx in range(len(flat_amenity_count_ref)):
         if idx not in flat_amenity_count_ref.keys(): 
             flat_amenity_count_ref[idx] = 0
 
@@ -123,7 +123,7 @@ def compute_mean_coe_prices(coe_prices, dataset):
     new_column = {"mean_coe_price": []}
 
     for i, row in dataset.iterrows():
-        row_date = str(row['rent_approval_year']) + "-" + str(row['rent_approval_month']).zfill(2)
+        row_date = str(int(row['rent_approval_year'])) + "-" + str(int(row['rent_approval_month'])).zfill(2)
         new_column["mean_coe_price"].append(coe_price_hash_table[row_date])
 
     dataset['mean_coe_price'] = new_column['mean_coe_price']

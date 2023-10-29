@@ -25,7 +25,3 @@ def split_features_and_rent_per_sqm_label(df: pd.DataFrame):
 def convert_rent_per_sqm_label_to_monthly_rent_label(y, floor_area_sqm):
     # convert back to original label for final prediction & error calculation
     return np.array(y) * np.array(floor_area_sqm)
-
-def round_to_nearest_price(y, round_interval: float = 50.0):
-    # function to round the label to the nearest price (default: nearest 50 sgd)
-    return np.round(np.array(y) / round_interval) * round_interval

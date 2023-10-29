@@ -52,6 +52,7 @@ def count_amenity(target_df:pd.DataFrame, ref_df:pd.DataFrame, threshold:float) 
     amenity_count_df = pd.DataFrame.from_dict(flat_amenity_count_ref, orient='index').sort_index(ascending=True).rename(columns={0:'amenity_count'})
     
     output_df = pd.merge(target_df, amenity_count_df, how='left', left_index=True, right_index=True)
+    output_df["amenity_count"] = output_df["amenity_count"].fillna(value=0.0)
 
     return output_df
 

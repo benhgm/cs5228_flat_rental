@@ -127,7 +127,7 @@ def std_flat_type(flat_type:str, lease_commence_year:int) -> Optional[float]:
         elif lease_commence_year > 2000:
             output = 3.5
     else:
-        output = None
+        output = 0.0
 
     return output
 

@@ -1,6 +1,6 @@
 
 # CS5228 Final Project: Predicting HDB Rental Prices
-This is the project repository for the CS5228 final project for AY23/24 Semester 1 for the group of Benjamin Ho, Bernard Cheng, Pham Quang Minhand Thong Nguyen.
+This is the project repository for the CS5228 final project for AY23/24 Semester 1 for the group of Benjamin Ho, Bernard Cheng, Pham Quang Minh, and Thong Nguyen.
 
 # Setup
 ## Jupyter Notebook

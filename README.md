@@ -17,6 +17,8 @@ git clone https://github.com/benhgm/cs5228_flat_rental.git
 ```
 
 # Repository Structure
+## Models
+All trained models are stored in the `models` folder.
 ## Data
 All data files are stored in the `data` folder.
 - `data/train.csv` contains the raw training data
@@ -36,3 +38,12 @@ We created various notebooks to support us in the data analysis process. This wa
 - `analyse_data.ipynb` imeplements additional analysis and feature engineering steps and saves a copy of the extended dataset in `data/train_feat_eng.csv`
 
 # Modelling
+## Generate Train / Test Data
+Before training any prediction model, we first generate the training and testing data. Use the `generate_data.ipynb` notebook to generate 4 different datasets for modelling.
+
+## Train the Models and Make Predictions
+We provide 7 notebooks, one for each model type that we experimented with.
+- `random_forest.ipynb` Implements a Random Forest Regression Model
+- `gradient_boost.ipynb` Implements a Gradient Boosting Regressor
+- `lightgbm.ipynb` Implements a LightGBM Gradient Boosting Model
+- `adaboost.ipynb` Implements a AdaBoost Regressor

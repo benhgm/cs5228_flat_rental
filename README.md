@@ -42,7 +42,10 @@ We created various notebooks to support us in the data analysis process. This wa
 Before training any prediction model, we first generate the training and testing data. Use the `generate_data.ipynb` notebook to generate 4 different datasets for modelling.
 
 ## Train the Models and Make Predictions
-We provide 7 notebooks, one for each model type that we experimented with.
+We provide 7 notebooks in the `experiments` folder, one for each model type that we experimented with.
+- `linear_regression.ipynb` Implements a Linear Regression Model
+- `kneighbours.ipynb` Implements a K-Neighbours Regressor
+- `bagging_regressor.ipynb` Implements a Bagging Regression Model
 - `random_forest.ipynb` Implements a Random Forest Regression Model
 - `gradient_boost.ipynb` Implements a Gradient Boosting Regressor
 - `lightgbm.ipynb` Implements a LightGBM Gradient Boosting Model
